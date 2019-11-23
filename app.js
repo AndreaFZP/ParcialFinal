@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 var casasRouter = require('./routes/casas');
 var registerRouter = require('./routes/register');
 var deleteRouter = require('./routes/delete');
+var updateRouter = require('./routes/update');
 
 mongoose.connect(process.env.MONGO_URI, {
   useCreateIndex: true,
@@ -48,6 +49,7 @@ app.use('/', indexRouter);
 app.use('/casas', casasRouter);
 app.use('/register', registerRouter);
 app.use('/delete', deleteRouter);
+app.use('/update', updateRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
