@@ -4,6 +4,7 @@ var casaController = require('../controllers/CasaController');
 
 
 
+
 router.get('/:casaname', casaController.getOne);
 router.get('/', casaController.getAll);
 

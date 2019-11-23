@@ -1,3 +1,4 @@
+var monoose = require('mongoose');
 var Casa = require('../models/casa');
 var debug = require('debug')('parcial:casa_controller');
 
@@ -42,7 +43,7 @@ module.exports.getAll = (req, res, next) => {
 
 /* Crear casa*/
 module.exports.register = (req, res, next) => {
-    res("New Casa", {
+    debug("New Casa", {
         body: req.body
     });
     Casa.findOne({
@@ -50,21 +51,24 @@ module.exports.register = (req, res, next) => {
         }, "-login_count")
         .then((foundCasa) => {
             if (foundCasa) {
-                debug("Casa dublicada");
+                debug("Casa duplicada");
                 throw new Error(`Casa duplicada ${req.body.casaname}`);
-            } else {
+            }
+            
+            else {
                 let newCasa = new Casa({
                     casaname: req.body.casaname,
                     ubicacion: req.body.ubicacion,
-                    dueño: req.body.dueño || "",
+                    dueno: req.body.dueno || "",
                     cantidad_hab: req.body.cantidad_hab || "",
-                    cochera: req.body.cochera,
+                    cochera: req.body.cochera
                 });
-                return newCasa.save(); // Retornamos la promesa para poder concater una sola linea de then
+                return newCasa.save()
+                 // Retornamos la promesa para poder concater una sola linea de then
             }
         }).then(casa => { 
             return res
-                .header('Location', '/casas/' + casa._id)
+                .header('Location', '/register/' + casa._id)
                 .status(201)
                 .json({
                     _id: casa._id
@@ -115,3 +119,4 @@ module.exports.delete = (req, res, next) => {
         next(err);
     })
 }
+

@@ -10,7 +10,7 @@ var CasaSchema = Schema({
     ubicacion: {
         type: String,
     },
-    dueño: String,
+    dueno: String,
     cantidad_hab: Number,
     cochera: {
         type: Boolean,
