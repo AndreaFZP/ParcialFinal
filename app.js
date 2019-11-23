@@ -9,7 +9,6 @@ var debug = require('debug')('parcial:database');
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var casasRouter = require('./routes/casas');
 var registerRouter = require('./routes/register');
 var deleteRouter = require('./routes/delete');
@@ -46,7 +45,6 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/casas', casasRouter);
 app.use('/register', registerRouter);
 app.use('/delete', deleteRouter);
