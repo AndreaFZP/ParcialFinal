@@ -5,7 +5,7 @@ var debug = require('debug')('parcial:casa_controller');
 module.exports.getOne = (req, res, next) => {
     debug("Search Casa", req.params);
     Casa.findOne({
-            ubicacion: req.params.casaname
+            casaname: req.params.casaname
         }, "-login_count")
         .then((foundCasa) => {
             if (foundCasa)
@@ -42,7 +42,7 @@ module.exports.getAll = (req, res, next) => {
 
 /* Crear casa*/
 module.exports.register = (req, res, next) => {
-    debug("New Casa", {
+    res("New Casa", {
         body: req.body
     });
     Casa.findOne({
